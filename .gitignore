@@ -1,0 +1,35 @@
+# Lista blanca: se ignora TODO lo que no se nombre aquí. La carpeta local contiene además el material de la
+# parte 1 del proyecto (video, audios, imágenes), que no hace falta para ejecutar la réplica.
+/*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/pyproject.toml
+!/uv.lock
+!/env.sh
+!/scripts/
+!/code/
+!/data/
+!/docs/
+
+/code/*
+!/code/rep/
+/data/*
+!/data/paper_reference.json
+
+# Generado al ejecutar (nunca se sube)
+/code/rep/data/
+__pycache__/
+*.pyc
+.DS_Store
+.venv*/
+.uv-cache/
+.uv-python/
+.cache/
+results/
+results_smoke/
+results_selftest/
+logs/
+*.zip
+# El código del autor se descarga con scripts/setup_vendor.sh (commit fijado), no se sube
+vendor/

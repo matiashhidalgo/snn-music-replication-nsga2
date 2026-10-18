@@ -1,0 +1,38 @@
+{
+  "source": "Liang, Zeng & Tang (2026), Sci Rep 16:12956, https://doi.org/10.1038/s41598-026-43529-1. Valores de figuras leídos de la imagen (+-0.01). Datos Bach.",
+  "cos_pasw_major": 0.98,
+  "cos_pasw_minor": 0.94,
+  "cos_psc_major": 0.97,
+  "cos_psc_minor": 0.94,
+  "psc_G_major": 0.98,
+  "pasw_G_major": 0.90,
+  "fig5c_psc_G_major": 1.0,
+  "fig5c_pasw_G_major": 0.95,
+  "cos_C_major_psc": 0.93,
+  "cos_C_major_pasw": 0.97,
+  "metric_names": ["PC", "PR", "PI", "DPR", "PE", "Pp", "PpR", "EBR", "GC"],
+  "metrics_original": [8.40, 11.70, 1.92, 0.93, 4.29, 4.19, 1.00, 0.00, 1.00],
+  "metrics_model": [4.50, 9.00, 2.20, 0.94, 3.63, 3.95, 0.96, 0.00, 1.00],
+  "oa_model": [0.71, 0.82, 0.71, 0.83, 0.90, 0.48, 0.00, 1.00, 0.20],
+  "sed": {
+    "Our Model": 9.24,
+    "Diffusion": 40.66,
+    "LSTM": 204.77,
+    "CNN": 194.48,
+    "GAN": 177.66,
+    "RNN": 171.46,
+    "Transformer": 143.22
+  },
+  "comparability": {
+    "value": ["cos_pasw_major", "cos_pasw_minor", "cos_psc_major", "cos_psc_minor", "DPR", "PpR", "EBR", "GC"],
+    "magnitude": ["SED"],
+    "trend": ["PC", "PR", "PI", "PE"],
+    "ambiguous": ["Pp"],
+    "note": "Comparable en valor: cosenos con KS, DPR, PpR, EBR, GC. Solo orden de magnitud y tendencia: SED y PC, PR, PI, PE (piezas completas del paper vs. L acordes aqui). Pp es ambigua (Fig. 7b da 4.19 con 4 voces)."
+  },
+  "shte_context_only": {
+    "cos_pasw_major": 0.98, "cos_psc_major": 0.98,
+    "cos_pasw_minor": 0.92, "cos_psc_minor": 0.93,
+    "sed_our_model": 30.11
+  }
+}

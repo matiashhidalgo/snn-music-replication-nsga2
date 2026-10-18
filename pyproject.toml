@@ -1,0 +1,33 @@
+[project]
+name = "neural-music-assets"
+version = "0.1.0"
+description = "Code-generated assets for the Bio-Inspired Computing video"
+requires-python = ">=3.10"
+dependencies = [
+  # shared
+  "numpy",
+  "pillow",
+  "qrcode[pil]",
+  # authors' model (musicMemory + braincog)
+  "torch",
+  "torchvision",
+  "music21",
+  "pretty_midi",
+  "pandas",
+  "openpyxl",
+  "scipy",
+  "matplotlib",
+  "einops",
+  "scikit-learn",
+  "seaborn",
+  "tqdm",
+  "timm",
+  "tonic",
+  "thop",
+  "pygame",
+  "dv",
+  "pymoo>=0.6.1,<0.7",
+]
+
+[dependency-groups]
+dev = ["opencv-python-headless"]
