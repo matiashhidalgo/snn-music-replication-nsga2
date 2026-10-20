@@ -20,12 +20,11 @@
    which uv || curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
    Si lo acaba de instalar, **cierra la Terminal y ábrela de nuevo**.
-   **Herramientas de desarrollo y Python** (una vez; si ya los tienes, no pasa nada):
+   **Herramientas de desarrollo** (una vez; si ya las tienes, no pasa nada):
    ```bash
    xcode-select -p || xcode-select --install     # compilador; abre una ventana, acepta e instala
-   python3 --version                              # debe decir 3.10 o mayor
    ```
-   Si `python3 --version` dice 3.9 o menor: `brew install python@3.12` (si no tienes Homebrew, avisa a Matías antes de seguir).
+   **No instales ni uses otro Python:** `uv` descarga solo el 3.11 que necesita el proyecto (≈ 40 MB). Con 3.12 o 3.13 la librería `dv` no funciona.
 8. Entra a la carpeta:
    ```bash
    cd ~/Desktop/neural-music

@@ -49,7 +49,7 @@ Todo es **reanudable**: si se interrumpe, se relanza la misma orden y continúa.
 
 - Apple Silicon (M1 o superior) y **macOS 14 o más reciente** (`torch` solo publica ruedas para esa combinación en Mac).
 - 16 GB de RAM (la ejecución usa ≈ 10 GB con 3 procesos) y ≥ 15 GB de disco libre.
-- Herramientas de línea de comandos de Apple (`xcode-select --install`: incluyen `git` y el compilador que necesita `dv`), Python ≥ 3.10 del sistema, [`uv`](https://docs.astral.sh/uv/) e internet.
+- Herramientas de línea de comandos de Apple (`xcode-select --install`: incluyen `git` y el compilador que necesita `dv`), [`uv`](https://docs.astral.sh/uv/) e internet. No hace falta instalar Python: `uv` descarga el 3.11 que usa el proyecto (no sirve 3.12 ni 3.13, porque `dv` usa el módulo `imp`).
 
 ## Estructura
 

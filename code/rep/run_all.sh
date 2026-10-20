@@ -75,9 +75,15 @@ if [ "$PHASE" = "A" ]; then
   log "código del autor (BrainCog, commit fijado)"
   bash "$ROOT/scripts/setup_vendor.sh" 2>&1 | tee logs/setup_vendor.log
   [ "${PIPESTATUS[0]}" -eq 0 ] || fail "descarga del código del autor (mira logs/setup_vendor.log; ¿hay internet y git?)"
-  log "uv sync (la primera vez descarga dependencias)"
+  if [ -x "$ROOT/.venv-vm/bin/python" ]; then
+    V=$("$ROOT/.venv-vm/bin/python" -c "import sys; print('%d.%d' % sys.version_info[:2])" 2>/dev/null)
+    case "$V" in 3.10|3.11) ;; *) log "entorno anterior con Python ${V:-?} (dv necesita 3.10 o 3.11): se recrea"; rm -rf "$ROOT/.venv-vm";; esac
+  fi
+  log "uv sync (la primera vez descarga Python 3.11 y las dependencias)"
   uv sync 2>&1 | tee logs/uv_sync.log
   [ "${PIPESTATUS[0]}" -eq 0 ] || fail "uv sync (mira logs/uv_sync.log)"
+  PYV=$($PY -c "import sys; print('%d.%d' % sys.version_info[:2])" 2>/dev/null)
+  case "$PYV" in 3.10|3.11) log "Python del entorno: $PYV";; *) fail "el entorno usa Python ${PYV:-?}; dv necesita 3.10 o 3.11 (borra .venv-vm y repite la Fase A)";; esac
   $PY "$REP/bench.py" --preflight 2>&1 | tee logs/preflight.log
   [ "${PIPESTATUS[0]}" -eq 0 ] || fail "pre-vuelo (mira results/preflight.json y logs/preflight.log)"
   $PY "$REP/bench.py" --smoke 2>&1 | tee logs/smoke.log

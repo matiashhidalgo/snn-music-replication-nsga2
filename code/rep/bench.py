@@ -165,7 +165,7 @@ def toolchain_checks(system=None, run=None, env=None):
     only_system = env.get("UV_PYTHON_PREFERENCE") == "only-system"
     if old and only_system:
         out.append(("python3 del sistema ≥ 3.10 (UV_PYTHON_PREFERENCE=only-system)", False,
-                    f"{ver or 'python3 no encontrado'}. Arréglalo con: \"brew install python@3.12\" o \"export UV_PYTHON_PREFERENCE=managed\""))
+                    f"{ver or 'python3 no encontrado'}. Arréglalo con: \"brew install python@3.11\" o \"export UV_PYTHON_PREFERENCE=managed\""))
     else:
         out.append(("python3 del sistema ≥ 3.10 (UV_PYTHON_PREFERENCE=only-system)", True,
                     f"{ver}" + (" (< 3.10, pero UV_PYTHON_PREFERENCE no es only-system)" if old else "")))
@@ -600,7 +600,7 @@ def light_preflight():
         run = lambda a: (py_code, py_out) if a[0] == "python3" else (xc_code, "/Library/Developer/CommandLineTools" if xc_code == 0 else "")   # noqa: E731
         return toolchain_checks("Darwin", run, {"UV_PYTHON_PREFERENCE": pref})
     r = mac("Python 3.9.6", 0, 0)
-    if r[0][1] or "brew install python@3.12" not in r[0][2] or "UV_PYTHON_PREFERENCE=managed" not in r[0][2]:
+    if r[0][1] or "brew install python@3.11" not in r[0][2] or "UV_PYTHON_PREFERENCE=managed" not in r[0][2]:
         bad.append("python 3.9 + only-system debería dar FAIL con la instrucción")
     if not mac("Python 3.12.4", 0, 0)[0][1] or not mac("Python 3.9.6", 0, 0, pref="managed")[0][1]:
         bad.append("python ≥ 3.10 (o preferencia managed) debería pasar")
