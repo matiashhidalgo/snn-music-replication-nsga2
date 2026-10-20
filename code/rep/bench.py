@@ -659,7 +659,9 @@ def fingerprint(r):
 
 
 def do_smoke():
-    os.environ.setdefault("REP_RESULTS_DIR", "results_smoke")
+    # nunca en results/: run_all.sh exporta REP_RESULTS_DIR=results para todas las etapas, y un setdefault no lo pisaría
+    if not rdir().name.endswith("_smoke"):
+        os.environ["REP_RESULTS_DIR"] = "results_smoke"
     safe_clean(rdir())
     rdir().mkdir(parents=True, exist_ok=True)
     ctx = {}
@@ -685,7 +687,8 @@ def do_smoke():
         import evaluate
         base = evaluate.evaluate(DEFAULTS, 1, "smoke", use_cache=False)
         changed = {}
-        for k, v in (("thr", 1), ("izh_d", 30.0), ("stdp_A", 10.0)):
+        # thr = 6 (cota alta), no 1: el vendor cuenta coincidencias en pares (temp siempre par), así que thr = 1 ≡ thr = 2
+        for k, v in (("thr", 6), ("izh_d", 30.0), ("stdp_A", 10.0)):
             r = evaluate.evaluate({**DEFAULTS, k: v}, 1, "smoke", use_cache=False)
             changed[k] = fingerprint(r) != fingerprint(base)
             if k == "izh_d":

@@ -49,6 +49,9 @@ def init_vendor():
         _orig(self, name, **kw)
 
     m21.pitch.Pitch.__init__ = _pitch_init
+    # music21 ≥ 10 quitó Stream.flat (desde la v7 era solo un alias de flatten()); el vendor lo usa en rememberPartNotes.
+    if not hasattr(m21.stream.Stream, "flat"):
+        m21.stream.Stream.flat = property(lambda self: self.flatten())
     from conf.conf import configs as _configs
     from api.music_engine_api import EngineAPI as _EngineAPI
     configs, EngineAPI = _configs, _EngineAPI

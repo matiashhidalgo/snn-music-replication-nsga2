@@ -53,7 +53,7 @@ def hist_control(n_train=40):
             continue
         mode, tonic = idx % 2, k.tonic.pitchClass
         for part in xml.parts:
-            for note in part.flat.notes[:20]:
+            for note in part.flatten().notes[:20]:
                 acc[mode][(data._pitch_of(note) - tonic) % 12] += 1
         cnt[mode] += 1
     return _control_dict(n_train, acc, cnt)
