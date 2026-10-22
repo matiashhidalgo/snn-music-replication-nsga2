@@ -54,7 +54,7 @@ def bach_index(rebuild=False):
             e["key"] = str(xml.analyze("key"))
             e["mode"] = e["key"].split()[-1]
             e["n_parts"] = len(xml.parts)
-            e["n_notes"] = min((len(part.flat.notes) for part in xml.parts), default=0)
+            e["n_notes"] = min((len(part.flatten().notes) for part in xml.parts), default=0)
             e["valid"] = bool(e["n_parts"] == 4 and e["key"] in core.configs.keyIndexMap and e["n_notes"] >= 20)
         except Exception as ex:                 # una pieza rara no debe tumbar el índice
             e["error"] = f"{type(ex).__name__}: {ex}"[:200]
@@ -69,7 +69,7 @@ def bach_index(rebuild=False):
 @functools.lru_cache(maxsize=256)
 def _events(path, L):
     xml = core.m21.corpus.parse(Path(path))
-    return tuple(tuple((_pitch_of(n), _dur_of(n)) for n in part.flat.notes[:L]) for part in list(xml.parts)[:4])
+    return tuple(tuple((_pitch_of(n), _dur_of(n)) for n in part.flatten().notes[:L]) for part in list(xml.parts)[:4])
 
 
 def ref_sample(seed, n, L):
